@@ -50,7 +50,7 @@ import Trip from "./Trip.png";
 import ig from "./ig.jpg";
 import pintrst from "./pintrst.jpg";
 import image from "./image.png";
-
+import linkedin from "./linkedin.png";
 
 export {
   logo,
@@ -97,6 +97,7 @@ export {
   ig,
   pintrst,
   image,
-  vp
+  vp,
+  linkedin
 };
 

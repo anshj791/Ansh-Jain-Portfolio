@@ -40,7 +40,8 @@ import {
     ig,
     pintrst,
     image,
-    vp
+    vp,
+    linkedin
 } from "../assets/index";
 
 export const navLinks = [
@@ -462,31 +463,28 @@ const Gallery = [
 ];
 
 const socialIcons = [
-    {
-        name: "Youtube",
-        icon: YouTube,
-        socialLink: 'https://youtube.com/MohammedArshad_'
-    },
+ 
     {
         name: "GitHub",
         icon: github,
-        socialLink: 'https://github.com/iamkingarsh'
-    },
-    {
-        name: "Instagram",
-        icon: instagram,
-        socialLink: 'https://instagram.com/iamkingarsh786'
+        socialLink: 'https://github.com/anshj791'
     },
     {
         name: "Twitter",
         icon: twitter,
-        socialLink: 'https://twitter.com/Arshad_Ali789'
+        socialLink: 'https://twitter.com/anshj791'
     },
     {
         name: "WhatsApp",
         icon: whatsapp,
-        socialLink: 'https://wa.me/+917013396624'
+        socialLink: 'https://wa.me/+918200616553'
     },
+    {
+        name: "Linkedin",
+        icon: linkedin,
+        socialLink: 'https://www.linkedin.com/in/ansh-jain-6b783822b/'
+    },
+
 ]
 
 export { services, technologies, experiences, testimonials, projects, Gallery, socialIcons };
