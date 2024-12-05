@@ -6,7 +6,6 @@ import web from "../assets/web.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import vp from "./vp.png";
 import css from "./tech/css.png";
 import aws from "./tech/aws.png";
 import figma from "./tech/figma.png";
@@ -49,6 +48,7 @@ import FoodApp from "./FoodApp.jpg";
 import Trip from "./Trip.png";
 import ig from "./ig.jpg";
 import pintrst from "./pintrst.jpg";
+import vp from "./vp.png";
 import image from "./image.png";
 import linkedin from "./linkedin.png";
 

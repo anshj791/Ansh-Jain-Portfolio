@@ -276,7 +276,7 @@ const projects = [
             },
         ],
         image: Trip,
-        source_code_link: "https://github.com/iamkingarsh/Food-Delivery-App-Clone",
+        source_code_link: "https://github.com/anshj791/cp-III-Ai-Trip-Planer",
     },
     {
         name: "Insta Clone",
@@ -305,7 +305,7 @@ const projects = [
             },
         ],
         image: ig,
-        source_code_link: "https://cokestoreapp.mohammedarshad.com",
+        source_code_link: "https://github.com/anshj791/instaclone",
     },
     {
         name: "Pintrest Clone",
@@ -334,7 +334,7 @@ const projects = [
             },
         ],
         image: pintrst,
-        source_code_link: "https://github.com/iamkingarsh/TO-BUYs-List-App",
+        source_code_link: "https://github.com/anshj791/Pinterest-Clone",
     },
     {
         name: "Golf Website",
@@ -355,7 +355,7 @@ const projects = [
             },
         ],
         image: image,
-        source_code_link: "https://m11architects.com/",
+        source_code_link: "https://github.com/anshj791/Golf-booking-Website",
     },
     // {
     //     name: "BubbleWorld",
@@ -389,7 +389,7 @@ const projects = [
             },
         ],
         image: vp,
-        source_code_link: "https://noor-ul-quran.in/",
+        source_code_link: "https://github.com/anshj791/Vision-Pro-Clone",
     },
     // {
     //     name: "Jindal Foams",
