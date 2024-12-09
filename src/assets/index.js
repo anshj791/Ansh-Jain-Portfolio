@@ -43,12 +43,12 @@ import architects from "./m11architects.png";
 import aptusfasteners from "./aptusfasteners.png";
 import Noorulquran from "./Noorulquran.png";
 import CokeStore from "./CokeStore.png";
-import ToBuysList from "./ToBuysList.png";
+// import ToBuysList from "./ToBuysList.png";
 import FoodApp from "./FoodApp.jpg";
 import Trip from "./Trip.png";
 import ig from "./ig.jpg";
 import pintrst from "./pintrst.jpg";
-import vp from "./vp.png";
+import vp from "./Vp.png";
 import image from "./image.png";
 import linkedin from "./linkedin.png";
 
@@ -87,7 +87,7 @@ export {
   FoodApp,
   jindalfoams,
   architects,
-  ToBuysList,
+  // ToBuysList,
   CokeStore,
   Noorulquran,
   whatsapp,
