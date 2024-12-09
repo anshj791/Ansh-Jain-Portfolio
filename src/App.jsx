@@ -14,7 +14,7 @@ const App = () => {
     if (isMobile) {
       setIsCompatible(false);
       setTimeout(() => {
-        window.location.replace("https://m.mohammedarshad.com");
+        window.location.replace("https://anshjainportfolio.netlify.app");
       }, 15000)
     }
   }, []);
