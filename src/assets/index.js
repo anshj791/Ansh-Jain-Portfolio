@@ -48,6 +48,7 @@ import pintrst from "./pintrst.jpg";
 import vp from "./Vp.png";
 import image from "./image.png";
 import linkedin from "./linkedin.png";
+import Cet from "./Cet.png";
 
 
 export {
@@ -95,6 +96,7 @@ export {
   pintrst,
   image,
   vp,
-  linkedin
+  linkedin,
+  Cet
 };
 
