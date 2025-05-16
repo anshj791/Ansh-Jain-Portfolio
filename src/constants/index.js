@@ -32,7 +32,6 @@ import {
     jindalfoams,
     aptusfasteners,
     rishabgoel,
-    ToBuysList,
     CokeStore,
     Noorulquran,
     threejs,

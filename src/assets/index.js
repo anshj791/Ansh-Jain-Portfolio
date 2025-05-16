@@ -1,11 +1,11 @@
-import logo from "./images/logo.png";
+// import logo from "./images/logo.png";
 import backend from "./backend1.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "../assets/web.png";
 import github from "./github.png";
-import menu from "./images/menu.svg";
-import close from "./images/close.svg";
+// import menu from "./images/menu.svg";
+// import close from "./images/close.svg";
 import css from "./tech/css.png";
 import aws from "./tech/aws.png";
 import figma from "./tech/figma.png";
@@ -49,15 +49,16 @@ import vp from "./Vp.png";
 import image from "./image.png";
 import linkedin from "./linkedin.png";
 
+
 export {
-  logo,
+  // logo,
   backend,
   creator,
   mobile,
   web,
   github,
-  menu,
-  close,
+  // menu,
+  // close,
   css,
   aws,
   figma,

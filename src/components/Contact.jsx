@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
 import { slideIn } from "../utils/motion";
 import { socialIcons } from "../constants";
 
@@ -12,11 +12,10 @@ const SocialIconsCanvas = ({ name, icon, socialLink }) => {
       className="backdrop-blur-sm"
     >
       <Tilt
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
+        tiltMaxAngleX={20}
+        tiltMaxAngleY={20}
+        glareEnable={true}
+        glareMaxOpacity={0.2}
         className="bg-gradient-to-br flex items-center space-x-2 px-4 justify-center hover:shadow-card shadow-gray-900 from-[#f9f9f921] to-[#0000008c] border-2 border-gray-500 p-3 rounded-xl"
       >
         <div className="relative w-10 h-10">

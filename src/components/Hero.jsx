@@ -70,7 +70,6 @@ const Hero = () => {
 
       <motion.div className='w-full h-full cursor-grab '>
         <ComputersCanvas />
-
       </motion.div>
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
@@ -90,9 +89,6 @@ const Hero = () => {
           </div>
         </a>
       </div>
-
-
-
     </StyledHero>
   );
 };
@@ -104,11 +100,11 @@ const StyledHero = styled.section`
   margin: 0 auto;
 `;
 
-const StyledHeroSubText = styled.p`
+// Changed from 'p' to 'div' here to fix invalid nesting warning
+const StyledHeroSubText = styled.div`
   display: inline-block;
   position: relative;
   overflow: hidden;
-
 
   > div {
     display: inline-block;
@@ -116,9 +112,6 @@ const StyledHeroSubText = styled.p`
     top: -2px;
     margin-left: 4px;
   }
-
- 
-
 `;
 
 export default Hero;
