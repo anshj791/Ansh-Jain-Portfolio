@@ -1,5 +1,4 @@
-// canvas/Computers.jsx
-import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
+import { OrbitControls, Preload, useGLTF, Html } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
 import * as THREE from 'three';
@@ -80,7 +79,7 @@ export const ComputersCanvas = () => {
   const [modelError, setModelError] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 450px)');
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
     setIsMobile(mediaQuery.matches);
 
     const handleMediaQueryChange = (event) => {
@@ -91,6 +90,20 @@ export const ComputersCanvas = () => {
     return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
   }, []);
 
+  // ✅ On mobile: render a fallback image
+  if (isMobile) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <img
+          src="/fallback-image.png"
+          alt="3D Model Placeholder"
+          className="w-[300px] h-auto object-contain"
+        />
+      </div>
+    );
+  }
+
+  // ✅ On desktop: render 3D Canvas
   return (
     <Canvas
       frameloop="demand"
@@ -100,13 +113,11 @@ export const ComputersCanvas = () => {
     >
       <Suspense fallback={<CanvasLoader />}>
         {!modelError ? (
-          <Computers isMobile={isMobile} onModelError={() => setModelError(true)} />
+          <Computers isMobile={false} onModelError={() => setModelError(true)} />
         ) : (
-          // Fallback: Show a simple box or light placeholder
-          <mesh>
-            <boxGeometry args={[2, 2, 2]} />
-            <meshStandardMaterial color="#915eff" />
-          </mesh>
+          <Html center>
+            <p style={{ color: 'white' }}>Model failed to load.</p>
+          </Html>
         )}
         <OrbitControls
           enableDamping
