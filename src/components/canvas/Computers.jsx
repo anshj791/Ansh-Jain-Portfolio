@@ -1,35 +1,20 @@
-import { OrbitControls, Preload, useGLTF, Html } from '@react-three/drei';
+import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState } from 'react';
-import * as THREE from 'three';
+import { Suspense, useEffect } from 'react';
 import CanvasLoader from '../Loader';
 
-function Computers({ isMobile, onModelError }) {
+function Computers({ isMobile }) {
   const { scene } = useGLTF('/desktop_pc/scene.gltf');
 
   useEffect(() => {
-    if (!scene) {
-      onModelError?.('Scene not loaded');
-      return;
-    }
-
-    let hasError = false;
+    if (!scene) return;
 
     scene.traverse((child) => {
-      if (child.isMesh && child.geometry) {
+      if (child.isMesh && child.geometry?.attributes?.position) {
         const posAttr = child.geometry.attributes.position;
 
-        if (!posAttr || !posAttr.array || !posAttr.count) {
-          child.visible = false;
-          hasError = true;
-          return;
-        }
-
         for (let i = 0; i < posAttr.count; i++) {
-          let x = posAttr.getX(i);
-          let y = posAttr.getY(i);
-          let z = posAttr.getZ(i);
-
+          let x = posAttr.getX(i), y = posAttr.getY(i), z = posAttr.getZ(i);
           if ([x, y, z].some(v => isNaN(v))) {
             posAttr.setXYZ(i, isNaN(x) ? 0 : x, isNaN(y) ? 0 : y, isNaN(z) ? 0 : z);
           }
@@ -40,17 +25,12 @@ function Computers({ isMobile, onModelError }) {
         try {
           child.geometry.computeBoundingBox();
           child.geometry.computeBoundingSphere();
-        } catch (error) {
+        } catch {
           child.visible = false;
-          hasError = true;
         }
       }
     });
-
-    if (hasError) onModelError?.('Mesh error in GLTF');
   }, [scene]);
-
-  if (!scene) return null;
 
   return (
     <>
@@ -74,36 +54,21 @@ function Computers({ isMobile, onModelError }) {
   );
 }
 
-export const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [modelError, setModelError] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
-  }, []);
-
-  // ✅ On mobile: render a fallback image
+export const ComputersCanvas = ({ isMobile }) => {
+  // ✅ If on mobile, return a fallback image or frame
   if (isMobile) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full h-[350px] flex items-center justify-center">
         <img
           src="/fallback-image.png"
-          alt="3D Model Placeholder"
-          className="w-[300px] h-auto object-contain"
+          alt="3D model fallback"
+          className="w-[200px] object-contain"
         />
       </div>
     );
   }
 
-  // ✅ On desktop: render 3D Canvas
+  // ✅ On desktop, render Canvas
   return (
     <Canvas
       frameloop="demand"
@@ -112,13 +77,7 @@ export const ComputersCanvas = () => {
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        {!modelError ? (
-          <Computers isMobile={false} onModelError={() => setModelError(true)} />
-        ) : (
-          <Html center>
-            <p style={{ color: 'white' }}>Model failed to load.</p>
-          </Html>
-        )}
+        <Computers isMobile={false} />
         <OrbitControls
           enableDamping
           dampingFactor={0.05}
