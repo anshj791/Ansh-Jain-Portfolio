@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
-import ComputersCanvas from './canvas/ComputersCanvas';
+import ComputersCanvas from './canvas/Computers';
 import { slideIn } from "../utils/motion";
 
 const Hero = () => {
