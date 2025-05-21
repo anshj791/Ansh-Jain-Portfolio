@@ -2,26 +2,18 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
+import ComputersCanvas from './canvas/ComputersCanvas';
 import { slideIn } from "../utils/motion";
-import { ComputersCanvas } from './canvas';
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
   const [index, setIndex] = useState(0);
   const [showText, setShowText] = useState(false);
-  const messages = ['Freelance Frontend Web & App Developer', 'Full Stack Developer'];
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
-  }, []);
+  const messages = [
+    'Freelance Frontend Web & App Developer',
+    'Full Stack Developer',
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,7 +23,18 @@ const Hero = () => {
         setShowText(true);
       }, 500);
     }, 3000);
+
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mediaQuery.matches);
+
+    const handleChange = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   const currentText = messages[index];
@@ -39,24 +42,35 @@ const Hero = () => {
 
   return (
     <StyledHero>
-      <div className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row `}>
-        <div className='bg-gradient-to-br lg:w-[1200px] w-full h-[450px] from-[#ffffff25] to-[#05050521] border-2 border-gray-500 lg:px-8 px-4 py-6 rounded-xl flex flex-row lg:space-x-6 space-x-4'>
+      <div className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row`}>
+        <div className="bg-gradient-to-br from-[#ffffff25] to-[#05050521] border-2 border-gray-500 rounded-xl backdrop-blur-lg lg:w-[1200px] w-full h-[450px] lg:px-8 px-4 py-6 flex flex-row lg:space-x-6 space-x-4">
           <div className="flex flex-col justify-start items-center mt-6">
             <div className="w-5 h-5 rounded-full bg-[#915eff]" />
             <div className="w-1 sm:h-80 h-40 violet-gradient" />
           </div>
 
           <div>
-            <h1 className={`${styles.heroHeadText}`}>Hey, I'm <br /><span className="text-[#9153ff]">Ansh Jain</span></h1>
+            <h1 className={`${styles.heroHeadText}`}>
+              Hey, I'm <br /><span className="text-[#9153ff]">Ansh Jain</span>
+            </h1>
+
             <StyledHeroSubText className={`${styles.heroSubText} mt-2 text-white-100`}>
               {showText && (
-                <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
                   {currentTextLetters.map((letter, i) => (
                     <motion.span
                       key={i}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.05 }}
+                      transition={{
+                        delay: i * 0.05,
+                        duration: 0.5,
+                        ease: 'easeInOut',
+                      }}
                     >
                       {letter}
                     </motion.span>
@@ -68,17 +82,18 @@ const Hero = () => {
         </div>
       </div>
 
-      <motion.div className="w-full h-full">
+      <motion.div className="w-full h-full cursor-grab">
+        {/* ✅ No Canvas or model will be rendered if isMobile === true */}
         <ComputersCanvas isMobile={isMobile} />
       </motion.div>
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[30px] h-[55px] rounded-3xl border-4 border-[#f1f1f1] flex justify-center items-start p-2'>
+      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
+        <a href="#about">
+          <div className="w-[30px] h-[55px] rounded-3xl border-4 border-[#f1f1f1] flex justify-center items-start p-2">
             <motion.div
               animate={{ y: [0, 24, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className='w-3 h-1.5 rounded-full bg-[#f1f1f1] mb-1'
+              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+              className="w-3 h-1.5 rounded-full bg-[#f1f1f1] mb-1"
             />
           </div>
         </a>
